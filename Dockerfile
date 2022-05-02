@@ -16,4 +16,6 @@ EXPOSE $PORT
 COPY ./app /code/app
 
 #
-CMD ["uvicorn app.main:app --host 0.0.0.0 -p\ :$PORT"]
+
+CMD uvicorn app.main:app --host 0.0.0.0 --port $PORT
+#CMD ["uvicorn app.main:app --host 0.0.0.0 -p\ :$PORT"]
