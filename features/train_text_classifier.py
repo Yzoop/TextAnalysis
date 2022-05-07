@@ -11,10 +11,13 @@ from sklearn.metrics import classification_report, accuracy_score  # beautiful m
 from sklearn.preprocessing import MultiLabelBinarizer
 
 
-def texts_labels_from_data(path):
+def texts_labels_from_data(path, dataset_size=1):
     with open(path) as f:
         # read tagot labeled data
         data = json.load(f)
+    # TODO: change dataset size from 0 (0 examples) to 1 (all examples). 0.6 - 60% of examples
+    np.random.shuffle(data)
+    data = data[:int(len(data) * dataset_size)]
     # split (text, label) pairs into 2 seperate lists for train_test_split function
     texts, labels = [item["text"] for item in data], [item["annotation"] for item in data]
     return texts, labels
