@@ -49,11 +49,6 @@ def train_classifier(train_x, train_y):
     logreg_model = LogisticRegression(random_state=17, penalty="none")
     multiclass_classifier = MultiOutputClassifier(
         logreg_model)  # multiclass classifier https://scikit-learn.org/stable/modules/generated/sklearn.multiclass.OneVsRestClassifier.html
-    # for x, y in zip(train_x, train_y):
-    #     try:
-    #         multiclass_classifier.fit(train_x, train_y)
-    #     except Exception as e:
-    #         print(e, "exception on", y)
     multiclass_classifier.fit(train_x, train_y)
     return multiclass_classifier
 
@@ -87,7 +82,7 @@ def plot_validation_curve(texts, labels, dataset_sizes):
         micro_avgs.append(micro_avg_f1)
     ax = sns.lineplot(x=dataset_sizes, y=micro_avgs)
     ax.set(xlabel='dataset size', ylabel='avg f1')
-
+    plt.grid(True)
     plt.show()
 
 
@@ -103,4 +98,4 @@ if __name__ == "__main__":
     multiclass_classifier = train_classifier(train_x, train_y)
     metrics = calculate_metrics(multiclass_classifier, label_binarizer, train_x, test_x, train_y, test_y)
     print(metrics)
-    plot_validation_curve(texts, labels, dataset_sizes=[0.2, 0.25, 0.5, 0.6, 0.8, 1.0])
+    plot_validation_curve(texts, labels, dataset_sizes=[0.2, 0.25, 0.5, 0.6, 0.7,  0.8, 0.9, 0.95])
