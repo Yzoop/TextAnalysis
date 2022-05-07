@@ -75,5 +75,8 @@ if __name__ == "__main__":
     n_pages = baseline_request(auth=AUTH)
     docs_data = docdata_request(n_pages=n_pages, auth=AUTH, filter_nonlabeled=True)
     print(f"successfully downloaded all the data. Found {len(docs_data)}")
-    with open(f"../data/text_classification_dataset_{datetime.today().strftime('%Y-%m-%d')}.json", 'w') as f:
-        json.dump(docs_data, f, indent=4)
+    with open(f"../data/text_classification_dataset_{datetime.today().strftime('%Y-%m-%d')}.json",
+              'w+',
+              encoding="utf-8") as f:
+        json.dump(docs_data, f, indent=4, ensure_ascii=False)
+
