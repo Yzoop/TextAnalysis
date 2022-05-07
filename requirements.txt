@@ -3,3 +3,5 @@ fastapi~=0.75.2
 pydantic>=1.8.0,<2.0.0
 gunicorn
 
+
+nltk~=3.7
