@@ -10,7 +10,8 @@ ENV PORT=$port
 
 #
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-RUN python -m nltk.downloader punkt
+RUN python3 -m nltk.downloader punkt
+RUN python3 -m nltk.downloader wordnet
 EXPOSE $PORT
 
 #
