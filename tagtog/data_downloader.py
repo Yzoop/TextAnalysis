@@ -16,7 +16,7 @@ ENTITY_TYPE_ID = {"m_17": "HISTORY", "m_7": "CULINARY", "m_18": "IT", "m_13": "P
 
 
 def baseline_request(auth=AUTH):
-    params = {"project": os.environ["project"], "owner": "ivkalin", "search": "folder:pool"}
+    params = {"project": os.environ["project"], "owner": os.environ["owner"], "search": "folder:pool"}
     response = requests.get(TAGTOGURL, params=params, auth=auth)
     if response.status_code == 200:
         response_dict = json.loads(response.text)
@@ -42,7 +42,7 @@ def annotation_request(id: str):
 
 
 def text_request(id: str):
-    params = {"owner": os.environ["username"],
+    params = {"owner": os.environ["owner"],
               "project": os.environ["project"],
               'ids': id,
               "output": "orig"}
@@ -58,7 +58,7 @@ def docdata_request(n_pages, auth=AUTH, filter_nonlabeled=False):
     docs = []
     for page_i in range(n_pages):
         params_docids = {"project": os.environ["project"],
-                         "owner": os.environ["username"],
+                         "owner": os.environ["owner"],
                          "search": "folder:pool",
                          "page": page_i}
         response = requests.get(TAGTOGURL, params=params_docids, auth=auth)
