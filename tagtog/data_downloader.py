@@ -27,7 +27,7 @@ def baseline_request(auth=AUTH):
 
 
 def annotation_request(id: str):
-    params = {"owner": os.environ["username"],
+    params = {"owner": os.environ["owner"],
               "project": os.environ["project"],
               'ids': id,
               "output": "ann.json"}
